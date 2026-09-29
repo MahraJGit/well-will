@@ -128,22 +128,22 @@ export default function AboutPage() {
         <div className="relative mx-auto flex min-h-0 w-full max-w-[1750px] flex-col gap-12 xl:h-[560px] xl:flex-row xl:items-stretch xl:gap-0">
           {/* Copy */}
           <div className="relative z-[1] flex w-full max-w-[620px] flex-col xl:pt-[93px]">
-            <SectionLabel>Why We Started</SectionLabel>
+            <SectionLabel>The Problem</SectionLabel>
 
             <h2 className="mt-8 max-w-[620px] font-display text-[36px] font-normal leading-none text-[#0A0705] md:text-[44px] lg:mt-[32px] lg:text-[48px] lg:leading-[48px]">
-              It began with one very long walk.
+              Clean water is still a daily struggle.
             </h2>
 
             <p className="mt-6 max-w-[520px] font-sans text-[16px] font-normal leading-[22px] text-[#667371] lg:mt-[22.75px]">
-              Our founders met a family who spent six hours a day carrying water. The nearest safe
-              source was a distant town, and the journey took children out of school and parents out
-              of work.
+              In many communities, families spend hours every day walking to collect water. The nearest
+              safe source is often far from home, and the journey pulls children out of school and
+              parents away from work.
             </p>
 
             <p className="mt-5 max-w-[540px] font-sans text-[16px] font-normal leading-[22px] text-[#667371] lg:mt-[32.25px]">
-              That single encounter became a question we could not leave alone: what if water came to
-              them instead? Twelve years later, we have helped build more than 120 wells — each one
-              shaped with the community that depends on it.
+              Without a reliable well nearby, people rely on distant or unsafe sources. Time that
+              could go to learning, earning, and care is lost to a basic need that should already be
+              close at hand.
             </p>
           </div>
 
@@ -176,19 +176,49 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission + vision — Figma 1910×429.5, #F8F4ED, divider @ left 1003 */}
+      {/* Leader vision */}
       <section className="bg-[#F8F4ED]">
-        <div className="mx-auto flex w-full max-w-[1910px] flex-col justify-center gap-10 px-5 py-16 md:px-10 lg:min-h-[430px] lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:px-[72px] lg:py-16 lg:pr-12">
-          <p className="max-w-[441px] font-display text-[30px] font-normal leading-[36px] text-heading lg:text-[36px] lg:leading-[38px]">
-            Bring reliable <em className="italic text-primary">access</em> to safe water closer to
-            communities that need it.
-          </p>
+        <div className="mx-auto flex w-full max-w-[1100px] flex-col items-center gap-10 px-5 py-16 text-center md:px-10 lg:flex-row lg:items-center lg:gap-16 lg:py-20 lg:text-left">
+          <figure className="w-full max-w-[300px] shrink-0 lg:max-w-[340px]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#e2e2e2]">
+              <Image
+                src="/images/ceo.webp"
+                alt="Muhammad Bin Majid of WellWill"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 300px, 340px"
+              />
+            </div>
+            <figcaption className="mt-5 text-center lg:text-left">
+              <p className="font-display text-[24px] font-normal leading-8 text-[#0A0705]">
+                Muhammad Bin Majid
+              </p>
+              <p className="mt-1 font-sans text-[13px] font-normal uppercase tracking-[2.4px] text-[#C7672F]">
+                MBM · Leadership
+              </p>
+            </figcaption>
+          </figure>
 
-          <div className="w-full max-w-[640px] border-t border-[#DFD8CC] pt-8 lg:h-[174px] lg:w-[min(859px,52%)] lg:max-w-none lg:border-l lg:border-t-0 lg:pl-[65px] lg:pt-[10px]">
-            <SectionLabel>OUR VISION</SectionLabel>
-            <p className="mt-3 max-w-[509px] font-display text-[30px] font-normal leading-[36px] text-heading lg:mt-1 lg:text-[36px] lg:leading-[38px]">
-              A future where clean water is accessible without long, difficult journeys.
-            </p>
+          <div className="min-w-0 max-w-[640px]">
+            <div className="flex justify-center lg:justify-start">
+              <SectionLabel>OUR VISION</SectionLabel>
+            </div>
+            <h2 className="mt-5 font-display text-[32px] font-normal leading-[1.15] text-heading md:text-[40px] lg:mt-6 lg:text-[44px] lg:leading-[48px]">
+              Every act of kindness can grow into lasting change.
+            </h2>
+            <div className="mt-7 space-y-5 font-sans text-[16px] font-normal leading-[26px] text-[#524D47] md:text-[17px] md:leading-[28px]">
+              <p>
+                Muhammad Bin Majid&apos;s (MBM) vision is to build a world where every act of kindness
+                can grow into lasting change. He believes that meaningful impact begins with simple
+                ideas, empowered people, and a willingness to take action.
+              </p>
+              <p>
+                Through WellWill, his ambition is to inspire a new generation of changemakers,
+                connect communities across borders, and turn compassion into practical solutions,
+                starting with access to safe, reliable water and expanding into initiatives that help
+                people and communities live healthier, stronger, and more hopeful lives.
+              </p>
+            </div>
           </div>
         </div>
       </section>

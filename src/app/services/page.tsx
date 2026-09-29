@@ -1,15 +1,47 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/common/Button";
+import type { ReactNode } from "react";
+import { PageHero } from "@/components/common/PageHero";
 import { SectionLabel } from "@/components/common/SectionLabel";
-import { PinIcon } from "@/components/common/icons";
+import { WellProjectsSection } from "@/components/projects/WellProjectsSection";
+import { featuredWellProjects } from "@/lib/projects";
 import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "See how sustainable water projects help communities across Punjab gain reliable access to clean, safe water.",
+    "From identifying need to building and sustaining wells, see how we bring reliable clean water to communities.",
   alternates: { canonical: "/services" },
+};
+
+export type ServicesHeroProps = {
+  label: string;
+  title: ReactNode;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+  primaryAction: { href: string; label: string };
+  secondaryAction: { href: string; label: string };
+};
+
+const defaultHero: ServicesHeroProps = {
+  label: "OUR SERVICES",
+  title: (
+    <>
+      <span className="block">Clean Water.</span>
+      <span className="block">
+        Lasting <em className="italic">Change.</em>
+      </span>
+    </>
+  ),
+  description:
+    "We identify need, build lasting wells with local teams, and stay for the training and care that keep water flowing.",
+  image: "/images/hero-services.jpg",
+  imageAlt:
+    "Children gather at a village hand pump under a wooden pavilion as water flows into a basin",
+  primaryAction: { href: "/fund-a-well", label: "Request a Well" },
+  secondaryAction: { href: "/projects", label: "View Projects" },
 };
 
 const stats = [
@@ -40,127 +72,35 @@ const processSteps = [
   },
 ];
 
-const projects = [
-  {
-    title: "Basti Rahim",
-    status: "completed" as const,
-    location: null as string | null,
-    copy: "A deep hand pump now serves 640 residents, turning a two-hour daily walk for water into a few steps from home.",
-    people: "640",
-    year: "2024",
-    image: "/images/project-basti-rahim.jpg",
-    imageAlt: "Basti Rahim community water well in Punjab, Pakistan",
-    reverse: false,
-  },
-  {
-    title: "Kot Abdullah",
-    status: "completed" as const,
-    location: "Sindh, Pakistan",
-    copy: "Built with local engineers, this well brought safe water to more than a thousand people across two neighbouring settlements.",
-    people: "1,120",
-    year: "2023",
-    image: "/images/project-kot-abdullah.jpg",
-    imageAlt: "Kot Abdullah community water well in Sindh, Pakistan",
-    reverse: true,
-  },
-  {
-    title: "Chak Noor",
-    status: "progress" as const,
-    location: "Khyber Pakhtunkhwa, Pakistan",
-    copy: "Construction is underway, with community training already planned so the well keeps flowing long after launch.",
-    people: "820",
-    year: "2025",
-    image: "/images/project-chak-noor.jpg",
-    imageAlt: "Chak Noor community water well in Khyber Pakhtunkhwa, Pakistan",
-    reverse: false,
-  },
-  {
-    title: "Thar Community",
-    status: "completed" as const,
-    location: "Tharparkar, Pakistan",
-    copy: "In the desert, this well became a lifeline — for drinking water, livestock, and small household gardens.",
-    people: "1,480",
-    year: "2023",
-    image: "/images/project-thar-community.jpg",
-    imageAlt: "Thar Community community water well in Tharparkar, Pakistan",
-    reverse: true,
-  },
-];
-
-export function ServicesView() {
+export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps }) {
   return (
     <>
-      {/* Services hero — same height as About: screen plus 120px */}
-      <section className="relative z-10 isolate h-[calc(100dvh+120px)] min-h-[760px] w-full overflow-hidden bg-black text-white">
-        <div className="relative flex h-full w-full flex-col justify-center">
-          {/* Full-bleed photo + gradient */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/hero-services.jpg"
-              alt="Children gather at a village hand pump under a wooden pavilion as water flows into a basin"
-              fill
-              priority
-              className="object-cover object-[50%_45%]"
-              sizes="100vw"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(270deg, rgba(255, 255, 255, 0) -7.12%, #000000 100%)",
-              }}
-            />
-          </div>
-
-          {/* Water 3 */}
-          <div className="pointer-events-none absolute bottom-[-36px] left-1/2 z-[1] h-[1941px] w-[3556px] max-w-none -translate-x-1/2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/hero-wave.png" alt="" className="h-full w-full max-w-none" />
-          </div>
-
-          {/* Content */}
-          <div className="relative z-[2] flex w-full flex-col items-start px-5 py-28 md:px-10 lg:px-20">
-            <span className="mb-6 inline-flex h-[26px] items-center rounded-full border border-[rgba(253,251,247,0.25)] bg-[rgba(253,251,247,0.15)] px-4 text-[13px] font-medium leading-4 text-[#FDFBF7]">
-              OUR SERVICES
-            </span>
-
-            <div className="flex w-full max-w-[768px] flex-col items-start gap-8">
-              <h1 className="w-full font-display text-[40px] font-normal leading-[0.94] text-[#FDFBF7] md:text-[52px] lg:h-[120px] lg:text-[64px] lg:leading-[60px]">
-                <span className="block">Clean Water.</span>
-                <span className="block">
-                  Lasting <em className="italic">Change.</em>
-                </span>
-              </h1>
-
-              <p className="max-w-[576px] font-sans text-[16px] font-normal leading-[22px] text-white/85 md:text-[18px]">
-                See how sustainable water projects are helping communities gain reliable access to
-                clean, safe water.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4">
-                <Button href="/fund-a-well" className="h-14">
-                  Request a Well
-                </Button>
-                <Button
-                  href="/our-work"
-                  variant="ghost"
-                  showArrow={false}
-                  className="h-[51px] w-auto px-4 text-[16px] lg:w-[189px]"
-                >
-                  Explore Our Services
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        label={hero.label}
+        title={hero.title}
+        description={hero.description}
+        image={hero.image ?? "/images/hero-services.jpg"}
+        imageAlt={
+          hero.imageAlt ??
+          "Children gather at a village hand pump under a wooden pavilion as water flows into a basin"
+        }
+        imagePosition={hero.imagePosition}
+        actions={[
+          { href: hero.primaryAction.href, label: hero.primaryAction.label },
+          {
+            href: hero.secondaryAction.href,
+            label: hero.secondaryAction.label,
+            variant: "ghost",
+          },
+        ]}
+      />
 
       {/* Intro — Figma: image 602×674 + Impact Introduction */}
       <section className="bg-[#FDFBF7] px-5 pb-16 pt-10 md:px-10 md:pb-20 lg:px-14 lg:pb-20 lg:pt-0">
         <div className="mx-auto flex max-w-[1750px] flex-col items-start gap-10 xl:flex-row xl:items-center xl:gap-x-12 xl:pb-20">
           <div className="relative h-auto w-full max-w-[602px] shrink-0 xl:h-[674px] xl:w-[602px]">
             <Image
-              src="/images/services-impact.png"
+              src="/images/impact-intro.png"
               alt="A boy drinks clean water from a new well while a field engineer and community look on"
               width={603}
               height={674}
@@ -284,102 +224,13 @@ export function ServicesView() {
         </div>
       </section>
 
-      {/* Featured Projects — Figma zigzag rows */}
-      <section className="relative isolate overflow-hidden bg-white px-5 py-16 md:px-10 md:py-20 lg:px-20 lg:py-20">
-        {/* Water 4 — soft decorative wash */}
-        <div className="pointer-events-none absolute inset-0 z-0">
-          <Image
-            src="/images/reach-cream-wash.png"
-            alt=""
-            fill
-            className="object-cover object-top opacity-80"
-            sizes="100vw"
-          />
-        </div>
-
-        <div className="relative z-[1] mx-auto flex w-full max-w-[1750px] flex-col items-start gap-8 lg:gap-8">
-          <div className="flex w-full max-w-[672px] flex-col items-start gap-6">
-            <SectionLabel>Featured Projects</SectionLabel>
-            <h2 className="w-full font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
-              Wells in the ground, water in daily life.
-            </h2>
-          </div>
-
-          <div className="flex w-full flex-col gap-8 lg:gap-8">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className={`flex w-full flex-col items-center gap-10 lg:flex-row lg:gap-16 ${
-                  project.reverse ? "lg:flex-row-reverse" : ""
-                }`}
-              >
-                <div className="relative h-[280px] w-full overflow-hidden rounded-[28px] bg-[#e2e2e2] sm:h-[360px] lg:h-[480px] lg:flex-1">
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 843px"
-                  />
-                </div>
-
-                <div className="flex w-full flex-col items-start gap-3 lg:flex-1 lg:gap-4">
-                  {project.status === "completed" ? (
-                    <span className="inline-flex h-7 items-center gap-2 rounded-full bg-[#E5F0E0] px-3.5">
-                      <span className="size-1.5 rounded-full bg-[#7C8D66]" />
-                      <span className="text-[12px] font-semibold uppercase leading-4 tracking-[1.8px] text-[#37422B]">
-                        Completed
-                      </span>
-                    </span>
-                  ) : (
-                    <span className="inline-flex h-7 items-center gap-2 rounded-full bg-[#FDECD7] px-3.5">
-                      <span className="size-1.5 rounded-full bg-[#E68142]" />
-                      <span className="text-[12px] font-semibold uppercase leading-4 tracking-[1.8px] text-[#7A3B1C]">
-                        In Progress
-                      </span>
-                    </span>
-                  )}
-
-                  <h3 className="w-full font-display text-[30px] font-normal leading-10 text-[#0A0705] md:text-[36px]">
-                    {project.title}
-                  </h3>
-
-                  {project.location ? (
-                    <div className="flex items-center gap-2 text-[#6E6862]">
-                      <PinIcon className="size-[15px] text-[#006C6F]" />
-                      <span className="font-sans text-[14px] leading-5">{project.location}</span>
-                    </div>
-                  ) : null}
-
-                  <p className="max-w-[512px] font-sans text-[16px] font-normal leading-[22px] text-[#667371] md:leading-[26px] md:text-[#524D47]">
-                    {project.copy}
-                  </p>
-
-                  <div className="flex w-full items-center gap-10 pt-5">
-                    <div className="flex flex-col gap-1">
-                      <p className="font-display text-[30px] font-normal leading-9 text-[#005256]">
-                        {project.people}
-                      </p>
-                      <p className="text-[12px] font-normal uppercase leading-4 tracking-[1.8px] text-[#6E6862]">
-                        People reached
-                      </p>
-                    </div>
-                    <div className="h-10 w-px bg-[#DFD8CC]" />
-                    <div className="flex flex-col gap-1">
-                      <p className="font-display text-[30px] font-normal leading-9 text-[#26211C]">
-                        {project.year}
-                      </p>
-                      <p className="text-[12px] font-normal uppercase leading-4 tracking-[1.8px] text-[#6E6862]">
-                        Project year
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Featured Projects */}
+      <WellProjectsSection
+        label="Featured Projects"
+        title="Wells in the ground, water in daily life."
+        projects={featuredWellProjects}
+        showViewAll
+      />
     </>
   );
 }

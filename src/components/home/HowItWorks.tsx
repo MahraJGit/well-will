@@ -57,8 +57,8 @@ export function HowItWorks() {
           {/* Photo — visible on all breakpoints */}
           <div className="relative mx-auto mt-8 h-[240px] w-[min(90%,353px)] overflow-hidden rounded-t-[40px] border-4 border-white bg-[#e2e2e2] sm:h-[300px] min-[1440px]:absolute min-[1440px]:left-20 min-[1440px]:top-[49px] min-[1440px]:mt-0 min-[1440px]:h-[480px] min-[1440px]:w-[353px] min-[1440px]:rounded-t-[51px]">
             <Image
-              src="/images/how-it-works-photo.png"
-              alt="A child drinks clean water while a field engineer looks on"
+              src="/images/how-it-works-photo-1.png"
+              alt="engineer drilling a well"
               fill
               className="object-cover object-[45%_center]"
               sizes="353px"

@@ -15,6 +15,7 @@ export function Header() {
     "/",
     "/services",
     "/our-work",
+    "/projects",
     "/about",
     "/contact",
     "/fund-a-well",
@@ -28,14 +29,13 @@ export function Header() {
         {/* Logo — 88×70 @ 79,34 */}
         <Link
           href="/"
-          className="absolute left-5 top-[34px] z-50 block h-[70px] w-[88px] md:left-10 lg:left-[79px]"
+          className="absolute left-5 top-[34px] z-50 block h-[66px] w-[174px] md:left-10 lg:left-[79px]"
           aria-label="Wells of Punjab home"
         >
           <Image
-            src="/images/logo.png"
+            src="/images/logo.svg"
             alt="Wells of Punjab"
             fill
-            sizes="88px"
             className="object-contain object-left"
             priority
           />

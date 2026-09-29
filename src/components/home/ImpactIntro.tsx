@@ -16,7 +16,7 @@ export function ImpactIntro() {
       <div className="relative mx-auto hidden h-[914px] max-w-[1440px] overflow-hidden min-[1440px]:block">
         <div className="absolute left-20 top-20 h-[459px] w-[310px] overflow-hidden rounded-[4px] bg-[#e2e2e2]">
           <Image
-            src="/images/about-community.png"
+            src="/images/well-flowing.png"
             alt="Community members gathering at a village water point"
             fill
             className="object-cover object-[70%_center]"
@@ -25,7 +25,7 @@ export function ImpactIntro() {
         </div>
         <div className="absolute left-[328px] top-[253px] h-[459px] w-[353px] overflow-hidden rounded-t-[51px] border-4 border-white bg-[#e2e2e2]">
           <Image
-            src="/images/about-engineer.png"
+            src="/images/engineer-working.png"
             alt="A child drinks clean water while a field engineer looks on"
             fill
             className="object-cover"

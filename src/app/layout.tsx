@@ -27,6 +27,12 @@ const footer = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  icons: {
+    icon: {
+      url: "/images/well-will-favicon.svg",
+      type: "image/svg+xml",
+    },
+  },
   title: {
     default: `${site.name} | Clean water for rural Punjab`,
     template: `%s | ${site.name}`,

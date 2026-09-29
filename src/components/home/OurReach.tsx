@@ -21,9 +21,9 @@ export function OurReach() {
         </div>
 
         <h2 className="mt-8 max-w-[614px] font-display text-[36px] font-normal leading-[1.1] tracking-[-0.01em] text-heading md:text-[44px] md:leading-[47px] min-[1440px]:absolute min-[1440px]:left-20 min-[1440px]:top-[151px] min-[1440px]:mt-0">
-          Clean Water Across
+          Clean Water Across <span className="text-primary-deep">Pakistan</span>
           <br />
-          <em className="italic text-gold">Pakistan &amp; UAE</em>
+          <em className="text-primary-deep">&amp; UAE</em>
         </h2>
 
         {/* Map 1280×606 @ 80,304 — Figma exact */}

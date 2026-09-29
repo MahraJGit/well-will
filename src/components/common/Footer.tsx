@@ -9,6 +9,7 @@ import {
   PinIcon,
   YoutubeIcon,
 } from "./icons";
+import Image from "next/image";
 
 const footerSocial = [
   { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
@@ -25,25 +26,8 @@ export function Footer() {
         <div className="grid gap-12 xl:grid-cols-[minmax(0,374px)_minmax(0,1fr)] xl:items-start xl:gap-16">
           {/* Brand column */}
           <div className="max-w-[374px]">
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 shrink-0 place-items-center rounded-[6px] bg-primary-deep text-white">
-                <svg
-                  viewBox="0 0 19 18"
-                  className="h-[18px] w-[19px]"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M9.5 1.2c-2.8 3.4-6.4 7.2-6.4 10.2A6.4 6.4 0 0 0 9.5 17.8a6.4 6.4 0 0 0 6.4-6.4C15.9 8.4 12.3 4.6 9.5 1.2Z" />
-                </svg>
-              </span>
-              <div>
-                <p className="text-[15px] font-extrabold leading-[15px] tracking-[-0.375px] text-white">
-                  {site.name}
-                </p>
-                <p className="mt-1 text-[10px] font-semibold uppercase tracking-[2.2px] text-gold-soft">
-                  Clean Water Initiative
-                </p>
-              </div>
+            <div>
+              <Image src="/images/logo.svg" alt={site.name} width={160} height={160} />
             </div>
 
             <p className="mt-6 text-[15px] leading-[26px] text-[rgba(230,230,223,0.8)]">
@@ -113,9 +97,8 @@ export function Footer() {
                   <p>
                     {site.location.label}
                     <br />
-                    {site.location.lines[0]}
+                    {site.location.lines.join(", ")}
                     <br />
-                    {site.location.lines[1]}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">

@@ -42,7 +42,7 @@ export function HomeHero() {
           </h1>
 
           <p className="mt-5 max-w-[433px] font-sans text-[16px] font-medium leading-[22px] tracking-[-0.01em] text-white md:text-[18px]">
-            Bringing safe, reliable water closer to communities across Punjab—one well at a time.
+          Making safe, reliable water accessible to communities around the world.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">

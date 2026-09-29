@@ -45,9 +45,10 @@ export default function CommunityStoriesPage() {
             the beginning.
           </>
         }
-        description="The real story is what happens after the water arrives — in kitchens, classrooms, and ordinary days."
+        description="The real story is what happens after the water arrives in kitchens, classrooms, and ordinary days."
         image="/images/hero-home.png"
         imageAlt="Community members standing together near a completed water project"
+        showSocial
       />
 
       <section className="bg-white px-5 py-20 md:px-10 lg:px-20">
