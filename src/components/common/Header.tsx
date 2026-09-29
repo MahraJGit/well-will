@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navLinks } from "@/lib/site";
 import { Button } from "./Button";
 import { CloseIcon, MenuIcon } from "./icons";
@@ -22,6 +22,19 @@ export function Header() {
     "/community-stories",
   ].includes(pathname);
   const light = !darkHero;
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header className="absolute inset-x-0 top-0 z-40">
@@ -91,25 +104,33 @@ export function Header() {
       </div>
 
       {open ? (
-        <div className="mx-5 rounded-3xl bg-footer p-5 xl:hidden">
-          <nav className="flex flex-col gap-1">
-            {navLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="mt-3">
-            <Button href="/fund-a-well" className="w-full justify-between">
-              Request a Well
-            </Button>
+        <>
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="fixed inset-0 z-30 cursor-default bg-black/45 xl:hidden"
+            onClick={() => setOpen(false)}
+          />
+          <div className="relative z-40 mx-5 rounded-3xl bg-footer p-5 xl:hidden">
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-2xl px-4 py-3 text-white transition-colors duration-200 hover:bg-white/10 hover:text-gold"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="mt-3">
+              <Button href="/fund-a-well" className="w-full justify-between">
+                Request a Well
+              </Button>
+            </div>
           </div>
-        </div>
+        </>
       ) : null}
     </header>
   );
