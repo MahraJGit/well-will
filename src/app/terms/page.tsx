@@ -3,7 +3,7 @@ import { Button } from "@/components/common/Button";
 
 export const metadata: Metadata = {
   title: "Terms",
-  description: "How to use the Wells of Punjab website and what a well request means.",
+  description: "How to use the Well Will website and what a well request means.",
   alternates: { canonical: "/terms" },
 };
 

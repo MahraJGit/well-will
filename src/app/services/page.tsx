@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { PageHero } from "@/components/common/PageHero";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { WellProjectsSection } from "@/components/projects/WellProjectsSection";
+import { ReviewsSection } from "@/components/work/ReviewsSection";
 import { featuredWellProjects } from "@/lib/projects";
 import Image from "next/image";
 import Link from "next/link";
@@ -183,6 +184,16 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
         </div>
       </section>
 
+      {/* Featured Projects */}
+      <WellProjectsSection
+        label="Featured Projects"
+        title="Wells in the ground, water in daily life."
+        projects={featuredWellProjects}
+        showViewAll
+      />
+
+      <ReviewsSection />
+
       {/* CTA band — village photo, dark gradient, orange Request a Well */}
       <section className="relative isolate flex h-auto min-h-[320px] w-full flex-col items-center overflow-hidden lg:h-[402px] lg:min-h-0">
         <div className="absolute inset-0 z-0">
@@ -223,14 +234,6 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
           </div>
         </div>
       </section>
-
-      {/* Featured Projects */}
-      <WellProjectsSection
-        label="Featured Projects"
-        title="Wells in the ground, water in daily life."
-        projects={featuredWellProjects}
-        showViewAll
-      />
     </>
   );
 }

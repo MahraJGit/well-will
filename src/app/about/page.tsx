@@ -102,7 +102,7 @@ const workSteps = [
     n: "2",
     label: "Step 02",
     title: "Build",
-    copy: "Working with trusted local teams, we construct sustainable wells suited to the land and the people.",
+    copy: "Working with trusted local teams, we construct sustainable wells suited to the land.",
   },
   {
     n: "3",

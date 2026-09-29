@@ -3,7 +3,7 @@ import { Button } from "@/components/common/Button";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Wells of Punjab uses the details you share when you request a well or contact us.",
+  description: "How Well Will uses the details you share when you request a well or contact us.",
   alternates: { canonical: "/privacy" },
 };
 

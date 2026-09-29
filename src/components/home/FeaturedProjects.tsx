@@ -22,7 +22,7 @@ export function FeaturedProjects() {
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 xl:grid-cols-4">
           {featuredWellProjects.map((project) => (
-            <WellProjectCard key={project.id} project={project} />
+            <WellProjectCard key={project.id} project={project} compact />
           ))}
         </div>
 

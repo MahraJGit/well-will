@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "water wells",
     "Punjab",
     "clean water",
-    "Wells of Punjab",
+    "Well Will",
     "rural communities",
     "Pakistan",
   ],

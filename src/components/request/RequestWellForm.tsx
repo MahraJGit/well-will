@@ -32,7 +32,7 @@ export function RequestWellForm() {
           <input required name="name" placeholder="Your answer" className={fieldClass} />
         </label>
         <label className="block min-w-0">
-          <FieldLabel required>Father&apos;s Name (نام والدین)</FieldLabel>
+          <FieldLabel required>Father&apos;s Name (  والد کا نام )</FieldLabel>
           <input required name="fatherName" placeholder="Your answer" className={fieldClass} />
         </label>
         <label className="block min-w-0 @min-[440px]:col-span-2">

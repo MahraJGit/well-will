@@ -3,22 +3,35 @@ import type { WellProject } from "@/lib/projects";
 
 type Props = {
   project: WellProject;
+  /** Tighter meta layout for narrow grids (e.g. homepage featured). */
+  compact?: boolean;
 };
 
-export function WellProjectCard({ project }: Props) {
+export function WellProjectCard({ project, compact = false }: Props) {
   return (
     <article className="flex h-full flex-col gap-5 rounded-[28px] border border-[#DFD8CC] bg-[#FDFBF7] px-6 py-7">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-        <span className="font-sans text-[12px] font-semibold uppercase leading-4 tracking-[1.8px] text-[#005256]">
-          {project.id}
-        </span>
-        <span className="text-[#DFD8CC]" aria-hidden>
-          ·
-        </span>
-        <span className="font-sans text-[12px] font-medium uppercase leading-4 tracking-[1.4px] text-[#C7672F]">
-          {project.wellType}
-        </span>
-      </div>
+      {compact ? (
+        <div className="flex flex-col gap-1.5">
+          <span className="font-sans text-[11px] font-semibold uppercase leading-4 tracking-[1.4px] text-[#005256]">
+            {project.id}
+          </span>
+          <span className="font-sans text-[11px] font-medium uppercase leading-4 tracking-[1.2px] text-[#C7672F]">
+            {project.wellType}
+          </span>
+        </div>
+      ) : (
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span className="font-sans text-[12px] font-semibold uppercase leading-4 tracking-[1.8px] text-[#005256]">
+            {project.id}
+          </span>
+          <span className="text-[#DFD8CC]" aria-hidden>
+            ·
+          </span>
+          <span className="font-sans text-[12px] font-medium uppercase leading-4 tracking-[1.4px] text-[#C7672F]">
+            {project.wellType}
+          </span>
+        </div>
+      )}
 
       <div>
         <h3 className="font-display text-[26px] font-normal leading-8 text-[#0A0705] md:text-[28px]">

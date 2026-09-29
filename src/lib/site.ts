@@ -1,6 +1,6 @@
 export const site = {
-  name: "Wells of Punjab",
-  shortName: "Wells",
+  name: "Well Will",
+  shortName: "Well Will",
   url: "https://wellsofpunjab.org",
   email: "inquiry@wellwill.com",
   phone: "+92 330 2748777",

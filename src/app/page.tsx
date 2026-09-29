@@ -22,8 +22,8 @@ export default function HomePage() {
       <HowItWorks />
       <FeaturedProjects />
       <ReachStoryBand>
-        <OurReach />
-        <CommunityStory />
+      <OurReach />
+      <CommunityStory />
       </ReachStoryBand>
       <SupportCta />
     </>

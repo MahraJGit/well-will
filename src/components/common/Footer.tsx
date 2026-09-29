@@ -26,9 +26,11 @@ export function Footer() {
         <div className="grid gap-12 xl:grid-cols-[minmax(0,374px)_minmax(0,1fr)] xl:items-start xl:gap-16">
           {/* Brand column */}
           <div className="max-w-[374px]">
-            <div>
-              <Image src="/images/logo.svg" alt={site.name} width={160} height={160} />
-            </div>
+            <Link href="/">
+              <div>
+                <Image src="/images/logo.svg" alt={site.name} width={160} height={160} />
+              </div>
+            </Link>
 
             <p className="mt-6 text-[15px] leading-[26px] text-[rgba(230,230,223,0.8)]">
               {site.tagline}
@@ -127,7 +129,7 @@ export function Footer() {
               Privacy Policy
             </Link>
             <Link href="/terms" className="hover:text-white">
-              Terms
+              Terms & Conditions
             </Link>
           </div>
         </div>
