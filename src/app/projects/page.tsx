@@ -34,8 +34,9 @@ export default function ProjectsPage() {
       />
 
       <WellProjectsSection
+        sectionId="after-hero"
         label="All Projects"
-        title="Completed wells in World."
+        title="Completed wells in Rahimyar Khan."
         projects={wellProjects}
       />
     </>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope, Radley } from "next/font/google";
 import { Footer } from "@/components/common/Footer";
 import { Header } from "@/components/common/Header";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -86,14 +87,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable} ${footer.variable}`}>
-      <body className="overflow-x-clip font-sans antialiased">
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${sans.variable} ${display.variable} ${footer.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="overflow-x-clip font-sans antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <ScrollProgress />
         <Header />
-        <main>{children}</main>
+        <main id="content">{children}</main>
         <Footer />
       </body>
     </html>

@@ -5,11 +5,19 @@ type Props = {
   project: WellProject;
   /** Tighter meta layout for narrow grids (e.g. homepage featured). */
   compact?: boolean;
+  /** Soft neumorphic surface for landing page. */
+  neu?: boolean;
 };
 
-export function WellProjectCard({ project, compact = false }: Props) {
+export function WellProjectCard({ project, compact = false, neu = false }: Props) {
   return (
-    <article className="flex h-full flex-col gap-5 rounded-[28px] border border-[#DFD8CC] bg-[#FDFBF7] px-6 py-7">
+    <article
+      className={
+        neu
+          ? "neu-card flex h-full flex-col gap-5 rounded-[28px] px-6 py-7"
+          : "flex h-full flex-col gap-5 rounded-[28px] border border-[#DFD8CC] bg-[#FDFBF7] px-6 py-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_rgba(21,37,36,0.08)]"
+      }
+    >
       {compact ? (
         <div className="flex flex-col gap-1.5">
           <span className="font-sans text-[11px] font-semibold uppercase leading-4 tracking-[1.4px] text-[#005256]">
@@ -43,7 +51,7 @@ export function WellProjectCard({ project, compact = false }: Props) {
         </div>
       </div>
 
-      <div className="mt-auto grid grid-cols-2 gap-4 border-t border-[#EEE8DE] pt-5">
+      <div className="mt-auto grid grid-cols-2 gap-4 border-t border-[rgba(196,186,170,0.35)] pt-5">
         <div>
           <p className="font-display text-[28px] font-normal leading-8 text-[#005256]">
             {project.familyMembers}

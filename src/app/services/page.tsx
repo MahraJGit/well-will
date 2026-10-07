@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { PageHero } from "@/components/common/PageHero";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { CountUp, Reveal, Stagger, StaggerItem, ZoomImage } from "@/components/motion/primitives";
 import { WellProjectsSection } from "@/components/projects/WellProjectsSection";
 import { ReviewsSection } from "@/components/work/ReviewsSection";
 import { featuredWellProjects } from "@/lib/projects";
@@ -96,21 +97,28 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
         ]}
       />
 
-      {/* Intro — Figma: image 602×674 + Impact Introduction */}
-      <section className="bg-[#FDFBF7] px-5 pb-16 pt-10 md:px-10 md:pb-20 lg:px-14 lg:pb-20 lg:pt-0">
+      {/* Intro */}
+      <section
+        id="after-hero"
+        className="scroll-mt-28 bg-[#FDFBF7] px-5 pb-16 pt-10 md:px-10 md:pb-20 lg:px-14 lg:pb-20 lg:pt-0"
+      >
         <div className="mx-auto flex max-w-[1750px] flex-col items-start gap-10 xl:flex-row xl:items-center xl:gap-x-12 xl:pb-20">
-          <div className="relative h-auto w-full max-w-[602px] shrink-0 xl:h-[674px] xl:w-[602px]">
+          <ZoomImage
+            from="left"
+            hoverScale={1.03}
+            className="relative h-auto w-full max-w-[602px] shrink-0 overflow-hidden rounded-[28px] xl:h-[674px] xl:w-[602px]"
+          >
             <Image
               src="/images/impact-intro.png"
               alt="A boy drinks clean water from a new well while a field engineer and community look on"
               width={603}
               height={674}
-              className="h-auto w-full xl:h-[674px] xl:w-[602px]"
+              className="h-auto w-full object-cover xl:h-full xl:w-full"
               priority
             />
-          </div>
+          </ZoomImage>
 
-          <div className="flex min-w-0 flex-1 flex-col items-start gap-5 px-0 md:px-6 lg:max-w-[1100px] lg:px-12">
+          <Reveal delay={0.12} className="flex min-w-0 flex-1 flex-col items-start gap-5 px-0 md:px-6 lg:max-w-[1100px] lg:px-12">
             <SectionLabel>Impact Introduction</SectionLabel>
             <h2 className="max-w-[1004px] font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
               We don&apos;t drop wells.{" "}
@@ -126,55 +134,56 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
               place. Finally, we train local caretakers so access to safe water is sustained, not
               temporary.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Impact stats — Figma dark bar + left rules */}
       <section className="w-full bg-[#001819] text-white">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-y-10 px-5 py-14 md:px-10 md:py-16 lg:grid-cols-4 lg:gap-0 lg:px-20">
+        <Stagger className="mx-auto grid max-w-[1440px] grid-cols-2 gap-y-10 px-5 py-14 md:px-10 md:py-16 lg:grid-cols-4 lg:gap-0 lg:px-20" stagger={0.08}>
           {stats.map((stat) => (
-            <div key={stat.label} className="border-l border-white/35 pl-5 md:pl-6 lg:pl-[25px]">
+            <StaggerItem key={stat.label} className="border-l border-white/35 pl-5 md:pl-6 lg:pl-[25px]">
               <p className="font-sans text-[40px] font-semibold leading-none tracking-[-0.03em] text-white md:text-[48px] lg:text-[56px] lg:leading-[56px] lg:tracking-[-1.68px]">
-                {stat.value}
+                <CountUp value={stat.value} />
               </p>
               <p className="mt-3 text-[11px] font-bold uppercase leading-[18px] tracking-[0.12em] text-white md:mt-4 md:text-[12px]">
                 {stat.label}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
-      {/* Process — Figma: #F8F4ED, 128/80 pad, staggered 01–03, Water 3 wave */}
+      {/* Process */}
       <section className="relative isolate overflow-hidden bg-[#F8F4ED] px-5 py-16 md:px-10 md:py-20 lg:px-20 lg:py-32">
         <div className="relative z-[1] mx-auto flex w-full max-w-[1750px] flex-col items-start gap-12 lg:gap-16">
-          <div className="flex w-full max-w-[672px] flex-col items-start gap-6">
+          <Reveal className="flex w-full max-w-[672px] flex-col items-start gap-6">
             <SectionLabel>How We Create Impact</SectionLabel>
             <h2 className="w-full font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
               From first survey to a <em className="italic">flowing</em> well.
             </h2>
-          </div>
+          </Reveal>
 
-          <div className="flex w-full flex-col items-start gap-12 lg:flex-row lg:justify-center lg:gap-10">
+          <Stagger className="flex w-full flex-col items-start gap-5 lg:flex-row lg:justify-center lg:gap-6" stagger={0.12}>
             {processSteps.map((step) => (
-              <div
+              <StaggerItem
                 key={step.num}
-                className={`flex w-full flex-1 flex-col items-start md:max-w-[557px] ${step.pad}`}
+                className={`w-full flex-1 md:max-w-[557px] ${step.pad}`}
               >
-                <p className="w-full font-display text-[56px] font-normal leading-none text-[rgba(0,133,134,0.6)] lg:text-[72px] lg:leading-[72px]">
-                  {step.num}
-                </p>
-                <div className="mt-8 w-full border-t border-[#DFD8CC]" />
-                <h3 className="mt-7 w-full font-display text-[26px] font-normal leading-9 text-[#0A0705] lg:text-[30px] lg:leading-9">
-                  {step.title}
-                </h3>
-                <p className="mt-4 w-full font-sans text-[16px] font-normal leading-[26px] text-[#524D47]">
-                  {step.copy}
-                </p>
-              </div>
+                <article className="neu-card flex h-full flex-col items-start rounded-[28px] p-6 md:p-8">
+                  <p className="w-full font-display text-[56px] font-normal leading-none text-[rgba(0,133,134,0.6)] lg:text-[72px] lg:leading-[72px]">
+                    {step.num}
+                  </p>
+                  <h3 className="mt-7 w-full font-display text-[26px] font-normal leading-9 text-[#0A0705] lg:text-[30px] lg:leading-9">
+                    {step.title}
+                  </h3>
+                  <p className="mt-4 w-full font-sans text-[16px] font-normal leading-[26px] text-[#524D47]">
+                    {step.copy}
+                  </p>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
 
         {/* Water 3 — decorative wave */}
@@ -213,7 +222,7 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
           />
         </div>
 
-        <div className="relative z-[1] mx-auto flex w-full max-w-[896px] flex-col items-center gap-4 px-6 py-16 lg:h-full lg:justify-center lg:py-20">
+        <Reveal className="relative z-[1] mx-auto flex w-full max-w-[896px] flex-col items-center gap-4 px-6 py-16 lg:h-full lg:justify-center lg:py-20">
           <h2 className="max-w-[679px] text-center font-display text-[36px] font-normal leading-none text-[#FDFBF7] md:text-[48px] lg:text-[60px] lg:leading-[60px]">
             Help Build the Next Well.
           </h2>
@@ -221,10 +230,10 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
             Every request moves a community one step closer to water that is safe, close, and
             dependable.
           </p>
-          <div className="pt-6 opacity-90 lg:pt-10">
+          <div className="pt-6 lg:pt-10">
             <Link
               href="/fund-a-well"
-              className="inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-[#E68142] px-8 font-sans text-[14px] font-medium leading-5 tracking-[0.35px] text-[#FDFBF7] transition-opacity hover:opacity-90"
+              className="btn-motion inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-[#E68142] px-8 font-sans text-[14px] font-medium leading-5 tracking-[0.35px] text-[#FDFBF7]"
             >
               Request a Well
               <span aria-hidden className="text-[14px] leading-none">
@@ -232,7 +241,7 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
               </span>
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { Reveal } from "@/components/motion/primitives";
 import { useEffect, useRef, useState } from "react";
 
 const reviews = [
@@ -135,7 +136,7 @@ export function ReviewsSection() {
   return (
     <section className="bg-white px-5 py-16 md:px-10 md:py-20 lg:px-20 lg:py-24">
       <div className="mx-auto flex w-full max-w-[1750px] flex-col gap-8 md:gap-10">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <Reveal className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-[640px]">
             <SectionLabel>Community Voices</SectionLabel>
             <h2 className="mt-5 font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
@@ -164,33 +165,35 @@ export function ReviewsSection() {
               <ArrowIcon direction="next" />
             </button>
           </div>
-        </div>
+        </Reveal>
 
-        <div
-          ref={scrollerRef}
-          className="-mx-5 flex gap-4 overflow-x-auto scroll-smooth px-5 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory md:-mx-10 md:px-10 lg:-mx-20 lg:px-20 [&::-webkit-scrollbar]:hidden"
-        >
-          {reviews.map((review) => (
-            <article
-              key={review.name}
-              data-review-card
-              className="flex w-[300px] shrink-0 snap-start flex-col rounded-[28px] border border-[#DFD8CC] bg-[#FDFBF7] px-6 py-7 sm:w-[340px]"
-            >
-              <span aria-hidden className="font-display text-[48px] leading-none text-gold">
-                “
-              </span>
-              <p className="mt-2 flex-1 font-sans text-[15px] leading-7 text-[#524D47] md:text-[16px]">
-                {review.quote}
-              </p>
-              <div className="mt-8 border-t border-[#EEE8DE] pt-5">
-                <p className="font-sans text-[15px] font-semibold text-[#0A0705]">{review.name}</p>
-                <p className="mt-1 text-[12px] uppercase tracking-[1.4px] text-[#6E6862]">
-                  {review.role}
+        <Reveal delay={0.12}>
+          <div
+            ref={scrollerRef}
+            className="-mx-5 flex gap-4 overflow-x-auto scroll-smooth px-5 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory md:-mx-10 md:px-10 lg:-mx-20 lg:px-20 [&::-webkit-scrollbar]:hidden"
+          >
+            {reviews.map((review) => (
+              <article
+                key={review.name}
+                data-review-card
+                className="neu-card flex w-[300px] shrink-0 snap-start flex-col rounded-[28px] px-6 py-7 sm:w-[340px]"
+              >
+                <span aria-hidden className="font-display text-[48px] leading-none text-gold">
+                  “
+                </span>
+                <p className="mt-2 flex-1 font-sans text-[15px] leading-7 text-[#524D47] md:text-[16px]">
+                  {review.quote}
                 </p>
-              </div>
-            </article>
-          ))}
-        </div>
+                <div className="mt-8 border-t border-[rgba(196,186,170,0.35)] pt-5">
+                  <p className="font-sans text-[15px] font-semibold text-[#0A0705]">{review.name}</p>
+                  <p className="mt-1 text-[12px] uppercase tracking-[1.4px] text-[#6E6862]">
+                    {review.role}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,13 +1,16 @@
+"use client";
+
 import { Button } from "@/components/common/Button";
 import { SectionLabel } from "@/components/common/SectionLabel";
 import { WellProjectCard } from "@/components/projects/WellProjectCard";
+import { HoverLift, Reveal, Stagger, StaggerItem } from "@/components/motion/primitives";
 import { featuredWellProjects } from "@/lib/projects";
 
 export function FeaturedProjects() {
   return (
     <section className="bg-white">
       <div className="relative mx-auto max-w-[1440px] px-5 pb-20 pt-20 md:px-10 lg:px-20 lg:pb-[80px] lg:pt-20">
-        <div className="max-w-[614px]">
+        <Reveal className="max-w-[614px]">
           <SectionLabel>FEATURED WELL PROJECTS</SectionLabel>
           <h2 className="mt-8 font-display text-[36px] leading-[1.08] tracking-[-0.01em] text-heading sm:text-[44px] md:text-[52px] lg:text-[64px] lg:leading-[1.05]">
             See where water is making a difference
@@ -18,19 +21,23 @@ export function FeaturedProjects() {
             location to construction and completion, every project is focused on
             creating safe, lasting access to water.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 xl:grid-cols-4">
+        <Stagger className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-14 xl:grid-cols-4" stagger={0.1}>
           {featuredWellProjects.map((project) => (
-            <WellProjectCard key={project.id} project={project} compact />
+            <StaggerItem key={project.id}>
+              <HoverLift className="h-full">
+                <WellProjectCard project={project} compact neu />
+              </HoverLift>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
-        <div className="mt-10">
+        <Reveal delay={0.15} className="mt-10">
           <Button href="/projects" className="h-14">
             View all projects
           </Button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

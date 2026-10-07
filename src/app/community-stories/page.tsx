@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/common/PageHero";
 import { SectionLabel } from "@/components/common/SectionLabel";
+import { Reveal, ZoomImage } from "@/components/motion/primitives";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -51,14 +52,19 @@ export default function CommunityStoriesPage() {
         showSocial
       />
 
-      <section className="bg-white px-5 py-20 md:px-10 lg:px-20">
+      <section id="after-hero" className="scroll-mt-28 bg-white px-5 py-20 md:px-10 lg:px-20">
         <div className="mx-auto grid max-w-[1280px] gap-16">
           {stories.map((story, index) => (
-            <article
+            <Reveal
               key={story.title}
+              delay={index * 0.06}
               className={`grid items-center gap-10 lg:grid-cols-2 ${index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}
             >
-              <div className="relative min-h-[360px] overflow-hidden rounded-[36px] bg-[#e2e2e2] lg:min-h-[420px]">
+              <ZoomImage
+                from={index % 2 === 0 ? "left" : "right"}
+                delay={0.08}
+                className="relative min-h-[360px] overflow-hidden rounded-[36px] bg-[#e2e2e2] lg:min-h-[420px]"
+              >
                 <Image
                   src={story.image}
                   alt={story.title}
@@ -66,7 +72,7 @@ export default function CommunityStoriesPage() {
                   className="object-cover"
                   sizes="(min-width: 1024px) 50vw, 100vw"
                 />
-              </div>
+              </ZoomImage>
               <div>
                 <SectionLabel>COMMUNITY STORY</SectionLabel>
                 <h2 className="mt-6 font-display text-[36px] leading-[1.1] tracking-[-0.02em] text-heading md:text-[44px] md:leading-[48px]">
@@ -88,7 +94,7 @@ export default function CommunityStoriesPage() {
                   </div>
                 </div>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>

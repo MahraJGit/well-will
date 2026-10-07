@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ClockIcon, MailIcon, PinIcon } from "@/components/common/icons";
+import { HeroReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/primitives";
 import { RequestWellForm } from "@/components/request/RequestWellForm";
 
 export const metadata: Metadata = {
@@ -58,22 +59,28 @@ export default function ContactPage() {
         />
 
         <div className="relative z-[1] flex w-full max-w-[1750px] flex-col items-center px-5 pb-16 pt-36 text-center lg:px-20 lg:pb-20 lg:pt-32">
-          <span className="inline-flex h-[27px] items-center rounded-full border border-[rgba(253,251,247,0.25)] bg-[rgba(253,251,247,0.15)] px-4 text-[13px] font-medium leading-[13px] text-[#FDFBF7]">
-            Get in touch
-          </span>
-          <h1 className="mt-4 font-display text-[40px] font-normal leading-none text-[#FDFBF7] md:text-[52px] lg:text-[60px] lg:leading-[60px]">
-            Let&apos;s talk about <em className="italic text-gold">water.</em>
-          </h1>
-          <p className="mt-6 max-w-[576px] font-sans text-[16px] font-normal leading-[22px] text-[rgba(248,244,237,0.85)]">
-            Questions about our projects, partnerships, or requesting a well? Send us a message and a
-            real person will reply.
-          </p>
+          <HeroReveal>
+            <span className="inline-flex h-[27px] items-center rounded-full border border-[rgba(253,251,247,0.25)] bg-[rgba(253,251,247,0.15)] px-4 text-[13px] font-medium leading-[13px] text-[#FDFBF7]">
+              Get in touch
+            </span>
+          </HeroReveal>
+          <HeroReveal delay={0.12}>
+            <h1 className="mt-4 font-display text-[40px] font-normal leading-none text-[#FDFBF7] md:text-[52px] lg:text-[60px] lg:leading-[60px]">
+              Let&apos;s talk about <em className="italic text-gold">water.</em>
+            </h1>
+          </HeroReveal>
+          <HeroReveal delay={0.24}>
+            <p className="mt-6 max-w-[576px] font-sans text-[16px] font-normal leading-[22px] text-[rgba(248,244,237,0.85)]">
+              Questions about our projects, partnerships, or requesting a well? Send us a message and a
+              real person will reply.
+            </p>
+          </HeroReveal>
         </div>
       </section>
 
       <section className="px-5 py-16 md:px-10 lg:px-20 lg:py-20">
         <div className="mx-auto grid w-full max-w-[1750px] items-start gap-12 xl:grid-cols-2 xl:gap-x-16">
-          <div>
+          <Reveal>
             <h2 className="font-display text-[32px] font-normal leading-10 text-[#0A0705] md:text-[36px]">
               We read every message.
             </h2>
@@ -82,9 +89,9 @@ export default function ContactPage() {
               — we&apos;re glad you reached out.
             </p>
 
-            <ul className="mt-7 flex flex-col gap-8">
+            <Stagger className="mt-7 flex flex-col gap-8" stagger={0.1}>
               {details.map(({ icon: Icon, label, value, href }) => (
-                <li key={label} className="flex items-start gap-4">
+                <StaggerItem key={label} className="flex items-start gap-4">
                   <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#D5F4F2] text-[#005256]">
                     <Icon className="size-[18px]" />
                   </span>
@@ -105,12 +112,14 @@ export default function ContactPage() {
                       </p>
                     )}
                   </div>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
-          </div>
+            </Stagger>
+          </Reveal>
 
-          <RequestWellForm />
+          <Reveal delay={0.12}>
+            <RequestWellForm />
+          </Reveal>
         </div>
       </section>
     </div>

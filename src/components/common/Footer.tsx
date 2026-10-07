@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerNav, footerResources, site } from "@/lib/site";
+import { Reveal } from "@/components/motion/primitives";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -22,13 +23,19 @@ export function Footer() {
   return (
     <footer className="bg-footer font-footer text-[#f7f7f2]">
       {/* Figma footer: 1440×500, padding 80 */}
-      <div className="mx-auto flex max-w-[1440px] flex-col justify-between px-5 py-16 md:px-10 lg:px-20 lg:py-20">
+      <Reveal className="mx-auto flex max-w-[1440px] flex-col justify-between px-5 py-16 md:px-10 lg:px-20 lg:py-20">
         <div className="grid gap-12 xl:grid-cols-[minmax(0,374px)_minmax(0,1fr)] xl:items-start xl:gap-16">
           {/* Brand column */}
           <div className="max-w-[374px]">
             <Link href="/">
               <div>
-                <Image src="/images/logo.svg" alt={site.name} width={160} height={160} />
+                <Image
+                  src="/images/logo-white.svg"
+                  alt={site.name}
+                  width={160}
+                  height={60}
+                  className="h-auto w-[160px]"
+                />
               </div>
             </Link>
 
@@ -44,7 +51,7 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={label}
-                    className="grid size-10 place-items-center rounded-full bg-white/[0.08] text-white transition-colors hover:bg-white/12"
+                    className="social-chip grid size-10 place-items-center rounded-full bg-white/[0.08] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors hover:bg-white/14"
                   >
                     <Icon className="size-4" />
                   </a>
@@ -133,7 +140,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

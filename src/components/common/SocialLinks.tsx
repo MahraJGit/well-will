@@ -19,7 +19,7 @@ export function SocialLinks({ className = "" }: { className?: string }) {
             target="_blank"
             rel="noreferrer"
             aria-label={label}
-            className="box-border flex size-11 flex-row items-center justify-center rounded-full border border-white/80 backdrop-blur-[33.5px]"
+            className="social-chip box-border flex size-11 flex-row items-center justify-center rounded-full border border-white/80 backdrop-blur-[33.5px]"
             style={{
               backgroundImage:
                 "linear-gradient(0deg, rgba(27, 31, 63, 0.16), rgba(27, 31, 63, 0.16)), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))",
