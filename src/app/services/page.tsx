@@ -12,7 +12,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "From identifying need to building and sustaining wells, see how we bring reliable clean water to communities.",
+    "Every well starts with a clear understanding of the community it will serve — from planning and construction to testing and handover.",
   alternates: { canonical: "/services" },
 };
 
@@ -27,6 +27,47 @@ export type ServicesHeroProps = {
   secondaryAction: { href: string; label: string };
 };
 
+export type ServicesIntroProps = {
+  label: string;
+  title: ReactNode;
+  paragraphs: string[];
+};
+
+export type ServicesProcessStep = {
+  num: string;
+  title: string;
+  copy: string;
+  pad?: string;
+};
+
+function ProcessStepCard({ step }: { step: ServicesProcessStep }) {
+  return (
+    <article className="neu-card flex h-full flex-col items-start rounded-[28px] p-6 md:p-8">
+      <p className="w-full font-display text-[56px] font-normal leading-none text-[rgba(0,133,134,0.6)] lg:text-[72px] lg:leading-[72px]">
+        {step.num}
+      </p>
+      <h3 className="mt-7 w-full font-display text-[26px] font-normal leading-9 text-[#0A0705] lg:text-[30px] lg:leading-9">
+        {step.title}
+      </h3>
+      <p className="mt-4 w-full font-sans text-[16px] font-normal leading-[26px] text-[#524D47]">
+        {step.copy}
+      </p>
+    </article>
+  );
+}
+
+export type ServicesProcessProps = {
+  label: string;
+  title: ReactNode;
+  steps: ServicesProcessStep[];
+};
+
+export type ServicesCtaProps = {
+  title: string;
+  description: string;
+  buttonLabel: string;
+};
+
 const defaultHero: ServicesHeroProps = {
   label: "OUR SERVICES",
   title: (
@@ -38,12 +79,108 @@ const defaultHero: ServicesHeroProps = {
     </>
   ),
   description:
-    "We identify need, build lasting wells with local teams, and stay for the training and care that keep water flowing.",
+    "Thoughtful planning. Practical solutions. Lasting access — support that covers the journey from need to water.",
   image: "/images/hero-services.jpg",
   imageAlt:
     "Children gather at a village hand pump under a wooden pavilion as water flows into a basin",
   primaryAction: { href: "/fund-a-well", label: "Request a Well" },
   secondaryAction: { href: "/projects", label: "View Projects" },
+};
+
+const defaultIntro: ServicesIntroProps = {
+  label: "What Goes Into Every Well",
+  title: (
+    <>
+      Thoughtful planning. Practical solutions.{" "}
+      <em className="italic text-gold">Lasting access.</em>
+    </>
+  ),
+  paragraphs: [
+    "Every well starts with a clear understanding of the community it will serve. We consider the location, local conditions, expected use, and practical requirements before work begins.",
+    "From planning and construction to testing and handover, each stage is designed to create a water point that communities can use and care for with confidence.",
+  ],
+};
+
+const defaultProcess: ServicesProcessProps = {
+  label: "Our Water Services",
+  title: (
+    <>
+      Support that covers the journey from need to <em className="italic">access.</em>
+    </>
+  ),
+  steps: [
+    {
+      num: "01",
+      title: "Community Assessment",
+      copy: "We listen to local communities and understand their water access challenges.",
+      pad: "lg:pt-0",
+    },
+    {
+      num: "02",
+      title: "Site Survey",
+      copy: "We assess the proposed location and surrounding conditions before construction begins.",
+      pad: "lg:pt-10",
+    },
+    {
+      num: "03",
+      title: "Well Construction",
+      copy: "We coordinate the construction of wells suited to the local environment and community needs.",
+      pad: "lg:pt-24",
+    },
+    {
+      num: "04",
+      title: "Water Testing",
+      copy: "We check the completed water point before it becomes part of the community's daily routine.",
+      pad: "lg:pt-8",
+    },
+    {
+      num: "05",
+      title: "Handover & Care",
+      copy: "We guide local caretakers on basic maintenance and responsible use after completion.",
+      pad: "",
+    },
+  ],
+};
+
+const defaultCta: ServicesCtaProps = {
+  title: "Need a Reliable Water Source?",
+  description:
+    "If your community is facing limited or unreliable water access, tell us about the need. Our team can review the request and guide you through the next steps.",
+  buttonLabel: "Request a Well",
+};
+
+export type ServicesAudienceProps = {
+  label: string;
+  title: ReactNode;
+  items: { title: string; copy: string }[];
+};
+
+const defaultAudiences: ServicesAudienceProps = {
+  label: "Who We Work With",
+  title: (
+    <>
+      Water access starts with understanding who{" "}
+      <em className="italic text-gold">needs it.</em>
+    </>
+  ),
+  items: [
+    {
+      title: "Rural Communities",
+      copy: "We work with communities where safe and reliable water is difficult to access.",
+    },
+    {
+      title: "Local Leaders",
+      copy: "Community representatives help us understand local needs and practical challenges.",
+    },
+    {
+      title: "Families",
+      copy: "Households can share their water access concerns and help identify areas where support is needed.",
+    },
+    {
+      title: "Community Partners",
+      copy: "Local partners can help connect projects with the people and places that need them most.",
+    },
+  ],
 };
 
 const stats = [
@@ -53,28 +190,19 @@ const stats = [
   { value: "100%", label: "Projects Verified" },
 ];
 
-const processSteps = [
-  {
-    num: "01",
-    title: "Identify",
-    copy: "We find communities where clean water access is limited, listening to local families and leaders.",
-    pad: "pb-0 lg:pb-32",
-  },
-  {
-    num: "02",
-    title: "Build",
-    copy: "Working with trusted local teams, we construct sustainable wells suited to the land and the people.",
-    pad: "py-0 lg:py-16",
-  },
-  {
-    num: "03",
-    title: "Sustain",
-    copy: "Training and maintenance keep reliable water flowing for years, not just for a season.",
-    pad: "pt-0 lg:pt-32",
-  },
-];
-
-export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps }) {
+export function ServicesView({
+  hero = defaultHero,
+  intro = defaultIntro,
+  process = defaultProcess,
+  audiences = defaultAudiences,
+  cta = defaultCta,
+}: {
+  hero?: ServicesHeroProps;
+  intro?: ServicesIntroProps;
+  process?: ServicesProcessProps;
+  audiences?: ServicesAudienceProps | null;
+  cta?: ServicesCtaProps;
+}) {
   return (
     <>
       <PageHero
@@ -119,21 +247,18 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
           </ZoomImage>
 
           <Reveal delay={0.12} className="flex min-w-0 flex-1 flex-col items-start gap-5 px-0 md:px-6 lg:max-w-[1100px] lg:px-12">
-            <SectionLabel>Impact Introduction</SectionLabel>
+            <SectionLabel>{intro.label}</SectionLabel>
             <h2 className="max-w-[1004px] font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
-              We don&apos;t drop wells.{" "}
-              <em className="italic text-gold">We build them with people.</em>
+              {intro.title}
             </h2>
-            <p className="max-w-[1004px] font-sans text-[16px] font-normal leading-7 text-[#524D47] md:text-[18px] md:leading-7">
-              Every project starts by understanding a community — how far they travel for water,
-              what the land can support, and what will keep a well working for years. We survey,
-              plan, and listen before a single stone is laid.
-            </p>
-            <p className="max-w-[1004px] font-sans text-[15px] font-normal leading-[26px] text-[#524D47] md:text-[16px]">
-              Then we build with trusted local teams, using materials and methods suited to the
-              place. Finally, we train local caretakers so access to safe water is sustained, not
-              temporary.
-            </p>
+            {intro.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="max-w-[1004px] font-sans text-[16px] font-normal leading-7 text-[#524D47] md:text-[18px] md:leading-7"
+              >
+                {paragraph}
+              </p>
+            ))}
           </Reveal>
         </div>
       </section>
@@ -158,32 +283,48 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
       <section className="relative isolate overflow-hidden bg-[#F8F4ED] px-5 py-16 md:px-10 md:py-20 lg:px-20 lg:py-32">
         <div className="relative z-[1] mx-auto flex w-full max-w-[1750px] flex-col items-start gap-12 lg:gap-16">
           <Reveal className="flex w-full max-w-[672px] flex-col items-start gap-6">
-            <SectionLabel>How We Create Impact</SectionLabel>
+            <SectionLabel>{process.label}</SectionLabel>
             <h2 className="w-full font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
-              From first survey to a <em className="italic">flowing</em> well.
+              {process.title}
             </h2>
           </Reveal>
 
-          <Stagger className="flex w-full flex-col items-start gap-5 lg:flex-row lg:justify-center lg:gap-6" stagger={0.12}>
-            {processSteps.map((step) => (
-              <StaggerItem
-                key={step.num}
-                className={`w-full flex-1 md:max-w-[557px] ${step.pad}`}
+          {process.steps.length === 5 ? (
+            <div className="flex w-full flex-col gap-5 lg:gap-6">
+              <Stagger
+                className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-start lg:gap-6"
+                stagger={0.1}
               >
-                <article className="neu-card flex h-full flex-col items-start rounded-[28px] p-6 md:p-8">
-                  <p className="w-full font-display text-[56px] font-normal leading-none text-[rgba(0,133,134,0.6)] lg:text-[72px] lg:leading-[72px]">
-                    {step.num}
-                  </p>
-                  <h3 className="mt-7 w-full font-display text-[26px] font-normal leading-9 text-[#0A0705] lg:text-[30px] lg:leading-9">
-                    {step.title}
-                  </h3>
-                  <p className="mt-4 w-full font-sans text-[16px] font-normal leading-[26px] text-[#524D47]">
-                    {step.copy}
-                  </p>
-                </article>
-              </StaggerItem>
-            ))}
-          </Stagger>
+                {process.steps.slice(0, 4).map((step) => (
+                  <StaggerItem key={step.num} className={step.pad ?? ""}>
+                    <ProcessStepCard step={step} />
+                  </StaggerItem>
+                ))}
+              </Stagger>
+
+              <Stagger className="flex w-full justify-center" stagger={0.12}>
+                {process.steps.slice(4).map((step) => (
+                  <StaggerItem key={step.num} className="w-full sm:max-w-[420px] lg:max-w-[340px]">
+                    <ProcessStepCard step={step} />
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </div>
+          ) : (
+            <Stagger
+              className="flex w-full flex-col items-start gap-5 lg:flex-row lg:justify-center lg:gap-6"
+              stagger={0.12}
+            >
+              {process.steps.map((step) => (
+                <StaggerItem
+                  key={step.num}
+                  className={`w-full flex-1 md:max-w-[557px] ${step.pad ?? ""}`}
+                >
+                  <ProcessStepCard step={step} />
+                </StaggerItem>
+              ))}
+            </Stagger>
+          )}
         </div>
 
         {/* Water 3 — decorative wave */}
@@ -202,6 +343,36 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
       />
 
       <ReviewsSection />
+
+      {audiences ? (
+        <section className="bg-[#F8F4ED]">
+          <div className="mx-auto w-full max-w-[1750px] px-5 py-16 md:px-10 md:py-20 lg:px-20 lg:py-24">
+            <Reveal>
+              <SectionLabel>{audiences.label}</SectionLabel>
+              <h2 className="mt-5 max-w-[640px] font-display text-[36px] font-normal leading-[1.08] text-[#0A0705] md:text-[44px] lg:text-[48px]">
+                {audiences.title}
+              </h2>
+            </Reveal>
+
+            <Stagger
+              className="mt-12 grid gap-10 sm:grid-cols-2 lg:mt-14 xl:grid-cols-4 xl:gap-x-6"
+              stagger={0.1}
+            >
+              {audiences.items.map((item) => (
+                <StaggerItem key={item.title}>
+                  <div className="h-px w-full bg-[#DFD8CC]" />
+                  <h3 className="mt-7 font-display text-[24px] font-normal leading-8 text-[#0A0705]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-[18px] max-w-[424px] font-sans text-[14px] font-normal leading-[23px] text-[#524D47]">
+                    {item.copy}
+                  </p>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </section>
+      ) : null}
 
       {/* CTA band — village photo, dark gradient, orange Request a Well */}
       <section className="relative isolate flex h-auto min-h-[320px] w-full flex-col items-center overflow-hidden lg:h-[402px] lg:min-h-0">
@@ -224,18 +395,17 @@ export function ServicesView({ hero = defaultHero }: { hero?: ServicesHeroProps 
 
         <Reveal className="relative z-[1] mx-auto flex w-full max-w-[896px] flex-col items-center gap-4 px-6 py-16 lg:h-full lg:justify-center lg:py-20">
           <h2 className="max-w-[679px] text-center font-display text-[36px] font-normal leading-none text-[#FDFBF7] md:text-[48px] lg:text-[60px] lg:leading-[60px]">
-            Help Build the Next Well.
+            {cta.title}
           </h2>
           <p className="max-w-[646px] text-center font-sans text-[16px] font-normal leading-7 text-[rgba(248,244,237,0.85)] md:text-[18px] md:leading-7">
-            Every request moves a community one step closer to water that is safe, close, and
-            dependable.
+            {cta.description}
           </p>
           <div className="pt-6 lg:pt-10">
             <Link
               href="/fund-a-well"
               className="btn-motion inline-flex h-[52px] items-center justify-center gap-2 rounded-full bg-[#E68142] px-8 font-sans text-[14px] font-medium leading-5 tracking-[0.35px] text-[#FDFBF7]"
             >
-              Request a Well
+              {cta.buttonLabel}
               <span aria-hidden className="text-[14px] leading-none">
                 →
               </span>

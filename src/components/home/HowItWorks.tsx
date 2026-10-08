@@ -6,32 +6,32 @@ import Image from "next/image";
 
 const steps = [
   {
-    title: "Identify",
-    copy: "Work with local partners to find communities where reliable water access is urgently needed.",
+    title: "Community Assessment",
+    copy: "We listen to local communities and understand their water access challenges.",
     icon: "/icons/step-identify.svg",
     iconSize: 22,
   },
   {
-    title: "Survey",
-    copy: "Visit the site to assess groundwater conditions, access routes, and community readiness.",
+    title: "Site Survey",
+    copy: "We assess the proposed location and surrounding conditions before construction begins.",
     icon: "/icons/step-survey.svg",
     iconSize: 22,
   },
   {
-    title: "Drill",
-    copy: "Professionally drill and construct a durable well suited to local ground conditions.",
+    title: "Well Construction",
+    copy: "We coordinate the construction of wells suited to the local environment and community needs.",
     icon: "/icons/step-drill.svg",
     iconSize: 17,
   },
   {
-    title: "Test",
-    copy: "Check water quality and system performance before the well is opened for daily use.",
+    title: "Water Testing",
+    copy: "We check the completed water point before it becomes part of the community's daily routine.",
     icon: "/icons/step-test.svg",
     iconSize: 22,
   },
   {
-    title: "Handover",
-    copy: "Train caretakers and hand the completed well over to the community for lasting ownership.",
+    title: "Handover & Care",
+    copy: "We guide local caretakers on basic maintenance and responsible use after completion.",
     icon: "/icons/step-handover.svg",
     iconSize: 22,
   },
@@ -48,8 +48,8 @@ export function HowItWorks() {
         <Reveal className="mx-auto flex max-w-[600px] flex-col items-center text-center">
           <SectionLabel>HOW IT WORKS</SectionLabel>
           <h2 className="mt-5 max-w-[18ch] font-display text-[34px] leading-[1.12] tracking-[-0.02em] text-footer sm:max-w-none sm:text-[40px] md:mt-6 md:text-[44px]">
-            From Ground Survey to{" "}
-            <em className="italic text-gold">Flowing Water.</em>
+            Support that covers the journey from need to{" "}
+            <em className="italic text-gold">access.</em>
           </h2>
           <p className="mt-3 max-w-[460px] text-[15px] leading-7 text-paragraph md:mt-4 md:text-[16px]">
             Five clear stages take a site from first assessment to a community-owned water point.
