@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             information, and we do not use it for advertising.
           </p>
           <p>
-            To ask about a message you sent, email hello@zarqawatertrust.org. A team member replies
+            To ask about a message you sent, email inquiry@wellwill.com. A team member replies
             within 2–3 working days.
           </p>
         </div>

@@ -80,7 +80,7 @@ export function HomeHero() {
                 href="/services"
                 variant="ghost"
                 showArrow={false}
-                className="h-[51px] px-4 text-[16px] lg:w-[189px]"
+                className="px-4 text-[16px]"
               >
                 Explore Our Services
               </Button>

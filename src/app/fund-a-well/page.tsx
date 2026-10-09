@@ -85,13 +85,13 @@ const details = [
   {
     icon: MailIcon,
     label: "Email",
-    value: "hello@zarqawatertrust.org",
-    href: "mailto:hello@zarqawatertrust.org",
+    value: "inquiry@wellwill.com",
+    href: "mailto:inquiry@wellwill.com",
   },
   {
     icon: PinIcon,
     label: "Field office",
-    value: "Lahore, Punjab, Pakistan",
+    value: "WellWill Office # 4087, World Trade Center, Islamabad, Pakistan",
   },
   {
     icon: ClockIcon,

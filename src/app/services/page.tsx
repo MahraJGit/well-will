@@ -31,6 +31,8 @@ export type ServicesIntroProps = {
   label: string;
   title: ReactNode;
   paragraphs: string[];
+  image?: string;
+  imageAlt?: string;
 };
 
 export type ServicesProcessStep = {
@@ -99,6 +101,9 @@ const defaultIntro: ServicesIntroProps = {
     "Every well starts with a clear understanding of the community it will serve. We consider the location, local conditions, expected use, and practical requirements before work begins.",
     "From planning and construction to testing and handover, each stage is designed to create a water point that communities can use and care for with confidence.",
   ],
+  image: "/images/water-bottles.png",
+  imageAlt:
+    "A boy drinks clean water from a new well while a field engineer and community look on",
 };
 
 const defaultProcess: ServicesProcessProps = {
@@ -113,31 +118,31 @@ const defaultProcess: ServicesProcessProps = {
       num: "01",
       title: "Community Assessment",
       copy: "We listen to local communities and understand their water access challenges.",
-      pad: "lg:pt-0",
+      pad: "xl:pt-0",
     },
     {
       num: "02",
       title: "Site Survey",
       copy: "We assess the proposed location and surrounding conditions before construction begins.",
-      pad: "lg:pt-10",
+      pad: "xl:pt-16",
     },
     {
       num: "03",
       title: "Well Construction",
       copy: "We coordinate the construction of wells suited to the local environment and community needs.",
-      pad: "lg:pt-24",
+      pad: "xl:pt-32",
     },
     {
       num: "04",
       title: "Water Testing",
       copy: "We check the completed water point before it becomes part of the community's daily routine.",
-      pad: "lg:pt-8",
+      pad: "xl:pt-16",
     },
     {
       num: "05",
       title: "Handover & Care",
       copy: "We guide local caretakers on basic maintenance and responsible use after completion.",
-      pad: "",
+      pad: "xl:pt-0",
     },
   ],
 };
@@ -234,14 +239,17 @@ export function ServicesView({
           <ZoomImage
             from="left"
             hoverScale={1.03}
-            className="relative h-auto w-full max-w-[602px] shrink-0 overflow-hidden rounded-[28px] xl:h-[674px] xl:w-[602px]"
+            className="relative h-auto w-full max-w-[602px] shrink-0 overflow-hidden rounded-[28px] xl:h-[600px] xl:w-[602px]"
           >
             <Image
-              src="/images/impact-intro.png"
-              alt="A boy drinks clean water from a new well while a field engineer and community look on"
+              src={intro.image ?? "/images/water-bottles.png"}
+              alt={
+                intro.imageAlt ??
+                "A boy drinks clean water from a new well while a field engineer and community look on"
+              }
               width={603}
               height={674}
-              className="h-auto w-full object-cover xl:h-full xl:w-full"
+              className="w-full object-cover"
               priority
             />
           </ZoomImage>
@@ -290,26 +298,16 @@ export function ServicesView({
           </Reveal>
 
           {process.steps.length === 5 ? (
-            <div className="flex w-full flex-col gap-5 lg:gap-6">
-              <Stagger
-                className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-start lg:gap-6"
-                stagger={0.1}
-              >
-                {process.steps.slice(0, 4).map((step) => (
-                  <StaggerItem key={step.num} className={step.pad ?? ""}>
-                    <ProcessStepCard step={step} />
-                  </StaggerItem>
-                ))}
-              </Stagger>
-
-              <Stagger className="flex w-full justify-center" stagger={0.12}>
-                {process.steps.slice(4).map((step) => (
-                  <StaggerItem key={step.num} className="w-full sm:max-w-[420px] lg:max-w-[340px]">
-                    <ProcessStepCard step={step} />
-                  </StaggerItem>
-                ))}
-              </Stagger>
-            </div>
+            <Stagger
+              className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-5 xl:items-start xl:gap-5"
+              stagger={0.1}
+            >
+              {process.steps.map((step) => (
+                <StaggerItem key={step.num} className={step.pad ?? ""}>
+                  <ProcessStepCard step={step} />
+                </StaggerItem>
+              ))}
+            </Stagger>
           ) : (
             <Stagger
               className="flex w-full flex-col items-start gap-5 lg:flex-row lg:justify-center lg:gap-6"

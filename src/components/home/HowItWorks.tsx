@@ -63,7 +63,7 @@ export function HowItWorks() {
             className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#e2e2e2] sm:aspect-[3/4] sm:rounded-[32px] lg:aspect-auto lg:min-h-[560px]"
           >
             <Image
-              src="/images/how-it-works-photo-1.png"
+              src="/images/how-it-works-section-img.png"
               alt="Field engineers working on a community well"
               fill
               className="object-cover object-[45%_center]"

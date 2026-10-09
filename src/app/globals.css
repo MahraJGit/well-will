@@ -308,12 +308,27 @@ a.neu-raised:hover {
   }
 }
 
-.btn-motion .btn-arrow {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+.btn-roll-track,
+.btn-arrow-track {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-.btn-motion:hover .btn-arrow {
-  transform: translate(2px, -2px);
+.btn-motion:hover .btn-roll-track,
+.btn-motion:hover .btn-arrow-track {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-roll-track,
+  .btn-arrow-track {
+    transition: none;
+  }
+
+  .btn-motion:hover .btn-roll-track,
+  .btn-motion:hover .btn-arrow-track {
+    transform: none;
+  }
 }
 
 .nav-link-motion {

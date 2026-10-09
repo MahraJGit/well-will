@@ -64,10 +64,24 @@ export function Button({
 
   const inner = (
     <>
-      <span className="whitespace-nowrap">{children}</span>
+      <span className="btn-roll relative inline-block overflow-hidden whitespace-nowrap leading-[1.3]">
+        <span className="btn-roll-track relative block">
+          <span className="block">{children}</span>
+          <span className="absolute left-0 top-full block" aria-hidden>
+            {children}
+          </span>
+        </span>
+      </span>
       {withArrow ? (
-        <span className="btn-arrow grid size-[50px] shrink-0 place-items-center rounded-full bg-gold text-white">
-          <ArrowUpRightIcon className="size-5 text-white" />
+        <span className="btn-arrow relative size-[50px] shrink-0 overflow-hidden rounded-full bg-gold text-white">
+          <span className="btn-arrow-track relative block size-full">
+            <span className="grid size-full place-items-center">
+              <ArrowUpRightIcon className="size-5 text-white" />
+            </span>
+            <span className="absolute left-0 top-full grid size-full place-items-center" aria-hidden>
+              <ArrowUpRightIcon className="size-5 text-white" />
+            </span>
+          </span>
         </span>
       ) : null}
     </>

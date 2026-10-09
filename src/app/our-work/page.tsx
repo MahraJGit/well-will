@@ -41,6 +41,9 @@ export default function OurWorkPage() {
           "Our work does not end when construction is complete. We focus on what happens after the water starts flowing, how families use the well, who looks after it, and what helps it remain useful over time.",
           "By involving local people throughout the process, each project becomes more than a completed structure. It becomes a shared community resource.",
         ],
+        image: "/images/impact-intro.png",
+        imageAlt:
+          "Community members gathering at a village water point after a well is built",
       }}
       process={{
         label: "What Shapes Our Work",
